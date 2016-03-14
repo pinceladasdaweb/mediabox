@@ -4,7 +4,8 @@ var gulp     = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     rename   = require('gulp-rename'),
     package  = require('./package.json'),
-    banner;
+    bannerJs,
+    bannerCss;
 
 banner = {
     js: '/*! ' +
@@ -29,7 +30,7 @@ gulp.task('compress:js', function() {
     .pipe(gulp.dest('dist/'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(header(banner, { package : package }))
+    .pipe(header(banner.js, { package : package }))
     .pipe(gulp.dest('dist/'));
 });
 
