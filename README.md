@@ -53,6 +53,10 @@ Now add class to links, for example:
 --- | --- | --- | --- | --- |
 IE 10+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
+## Thanks
+
+Many thanks to [Qassim Alobaidi](https://github.com/QassimHassan/YouTube_PopUp), who originally created the plugin for jQuery.
+
 ## Contributing
 
 Check [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
