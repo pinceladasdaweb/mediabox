@@ -33,7 +33,7 @@ import mediabox from 'mediabox';
 
 ### Browser
 ```html
-<link rel="stylesheet" type="text/css" href="mediabox.css">
+<link rel="stylesheet" type="text/css" href="path/to/mediabox.css">
 <script src="path/to/mediabox.js"></script>
 <script>
     MediaBox('.mediabox');
