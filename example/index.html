@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>MediaBox Lightbox Plugin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../dist/mediabox.min.css">
+    <style type="text/css" media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: 'sans-serif', Arial;
+            line-height: 1.5em;
+            padding: 20px
+        }
+
+        a {
+            color: #3498db
+        }
+
+        h1, h2 {
+            margin-bottom: .5em;
+            text-align: center
+        }
+
+        h2 {
+            color: #b0b0b0;
+            font-weight: normal
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        .container {
+            margin: 0 auto;
+            max-width: 640px
+        }
+
+        .mediabox {
+            display: block;
+            margin-bottom: 20px
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <h1>MediaBox Lightbox Plugin</h1>
+        <h2>Display YouTube or Vimeo videos in Lightbox</h2>
+        <a href="https://www.youtube.com/watch?v=3qyhgV0Zew0" class="mediabox"><img src="https://img.youtube.com/vi/3qyhgV0Zew0/sddefault.jpg"></a>
+        <a href="https://vimeo.com/71495477" class="mediabox"><img src="https://i.vimeocdn.com/video/445086363_640.jpg"></a>
+        <p><a href="https://github.com/pinceladasdaweb/mediabox" title="MediaBox Lightbox Plugin">MediaBox Lightbox Plugin</a> is a VanillaJS plugin based on original <a href="https://github.com/QassimHassan/YouTube_PopUp" title="YouTube PopUp jQuery Plugin">YouTube PopUp jQuery Plugin</a></p>
+    </section>
+
+    <script type="text/javascript" src="../dist/mediabox.min.js"></script>
+    <script type="text/javascript">
+        MediaBox('.mediabox');
+    </script>
+</body>
+</html>
