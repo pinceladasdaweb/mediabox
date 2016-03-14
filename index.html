@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Mediabox by pinceladasdaweb</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Mediabox</h1>
+        <p>Responsive Lightbox Plugin for Youtube and Vimeo with Vanilla JS</p>
+
+        <p class="view"><a href="https://github.com/pinceladasdaweb/mediabox">View the Project on GitHub <small>pinceladasdaweb/mediabox</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/pinceladasdaweb/mediabox/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/pinceladasdaweb/mediabox/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/pinceladasdaweb/mediabox">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="mediabox" class="anchor" href="#mediabox" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MediaBox</h1>
+
+<blockquote>
+<p>Responsive Lightbox Plugin for Youtube and Vimeo with Vanilla JS</p>
+</blockquote>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>View <a href="https://pinceladasdaweb.github.io/mediabox/example/">demo here</a></p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>With npm</p>
+
+<div class="highlight highlight-source-shell"><pre>npm install mediabox --save</pre></div>
+
+<p>Download</p>
+
+<p>You can download the latest version or checkout all the releases <a href="https://github.com/pinceladasdaweb/mediabox/releases">here</a>.</p>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use?</h2>
+
+<p>Require the package or use the global <code>mediabox</code> namespace and include style:</p>
+
+<h3>
+<a id="commonjs" class="anchor" href="#commonjs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>commonJS</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> mediabox <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>mediabox<span class="pl-pds">'</span></span>);</pre></div>
+
+<h3>
+<a id="es6" class="anchor" href="#es6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ES6</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">import</span> <span class="pl-smi">mediabox</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">'</span>mediabox<span class="pl-pds">'</span></span>;</pre></div>
+
+<h3>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser</h3>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/css<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>mediabox.css<span class="pl-pds">"</span></span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/mediabox.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-en">MediaBox</span>(<span class="pl-s"><span class="pl-pds">'</span>.mediabox<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<p>Now add class to links, for example:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://www.youtube.com/watch?v=3qyhgV0Zew0<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mediabox<span class="pl-pds">"</span></span>&gt;Youtube&lt;/<span class="pl-ent">a</span>&gt;
+&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>https://vimeo.com/71495477<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mediabox<span class="pl-pds">"</span></span>&gt;Vimeo&lt;/<span class="pl-ent">a</span>&gt;</pre></div>
+
+<h2>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser Support</h2>
+
+<table>
+<thead>
+<tr>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png" alt="IE"></th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/chrome/chrome_48x48.png" alt="Chrome"></th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/firefox/firefox_48x48.png" alt="Firefox"></th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/opera/opera_48x48.png" alt="Opera"></th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/safari/safari_48x48.png" alt="Safari"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE 10+ ✔</td>
+<td>Latest ✔</td>
+<td>Latest ✔</td>
+<td>Latest ✔</td>
+<td>Latest ✔</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Check <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for more information.</p>
+
+<h2>
+<a id="history" class="anchor" href="#history" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>History</h2>
+
+<p>Check <a href="https://github.com/pinceladasdaweb/mediabox/releases">Releases</a> for detailed changelog.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="LICENSE">MIT</a></p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/pinceladasdaweb">pinceladasdaweb</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
