@@ -6,19 +6,26 @@ var gulp     = require('gulp'),
     package  = require('./package.json'),
     banner;
 
-banner = [
-  '/*! ',
-    '<%= package.name %> ',
-    'v<%= package.version %> | ',
-    '(c) ' + new Date().getFullYear() + ' <%= package.author %> |',
-    ' <%= package.homepage %>',
-  ' */',
-  '\n'
-].join('');
+banner = {
+    js: '/*! ' +
+        '<%= package.name %> ' +
+        'v<%= package.version %> | ' +
+        '(c) ' + new Date().getFullYear() + ' <%= package.author %> |' +
+        ' <%= package.homepage %>' +
+        ' */' +
+        '\n',
+    css: '/*\n' +
+        'Style By: Qassim Hassan\n' +
+        'Twitter: @QQQHZ\n' +
+        'Websites: wp-time.com | qass.im | wp-plugins.in\n' +
+        'Copyright (c) 2016 - Qassim Hassan\n' +
+        'Adapted by: <%= package.author %> for <%= package.name %> v<%= package.version %> | <%= package.homepage %> ' +
+        '*/\n'
+}
 
 gulp.task('compress:js', function() {
   return gulp.src('src/mediabox.js')
-    .pipe(header(banner, { package : package }))
+    .pipe(header(banner.js, { package : package }))
     .pipe(gulp.dest('dist/'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
@@ -28,10 +35,11 @@ gulp.task('compress:js', function() {
 
 gulp.task('compress:css', function() {
   return gulp.src('src/mediabox.css')
-    .pipe(header(banner, { package : package }))
+    .pipe(header(banner.css, { package : package }))
     .pipe(gulp.dest('dist/'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(cleanCSS())
+    .pipe(header(banner.css, { package : package }))
     .pipe(gulp.dest('dist/'));
 });
 
