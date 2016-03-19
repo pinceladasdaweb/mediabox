@@ -1,7 +1,7 @@
 {
     "name": "mediabox",
     "description": "Responsive Lightbox Plugin for Youtube and Vimeo with Vanilla JS",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Pedro Rogerio",
     "license": "MIT",
     "copyright": "2016",
