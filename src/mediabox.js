@@ -28,9 +28,28 @@
 
                     var link = this.parseUrl(el.getAttribute('href'));
                     this.render(link);
-                    this.close();
+                    this.events();
                 }.bind(this), false);
             }.bind(this));
+        },
+        debounce: function(func, wait, immediate) {
+            var timeout;
+    return function() {
+        var context = this,
+            args = arguments;
+        var later = function() {
+            timeout = null;
+            if ( !immediate ) {
+                func.apply(context, args);
+            }
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait || 200);
+        if ( callNow ) {
+            func.apply(context, args);
+        }
+    };
         },
         template: function (s, d) {
             var p;
@@ -72,23 +91,33 @@
             }
 
             lightbox = this.template(
-                '<div class="mediabox-wrap"><div class="mediabox-content"><span class="mediabox-close"></span><iframe src="{embed}?autoplay=1" frameborder="0" allowfullscreen></iframe></div></div>', {
+                '<div class="mediabox-wrap" role="dialog" aria-hidden="false"><div class="mediabox-content" role="document" tabindex="0"><span class="mediabox-close" aria-label="close"></span><iframe src="{embed}?autoplay=1" frameborder="0" allowfullscreen></iframe></div></div>', {
                     embed: embedLink
                 });
 
             this.root.insertAdjacentHTML('beforeend', lightbox);
         },
-        close: function () {
+        events: function () {
             var wrapper = document.querySelector('.mediabox-wrap');
 
             wrapper.addEventListener('click', function (e) {
                 if (e.target && e.target.nodeName === 'SPAN' && e.target.className === 'mediabox-close') {
-                    wrapper.classList.add('mediabox-hide');
-                    setTimeout(function() {
-                        this.root.removeChild(wrapper);
-                    }.bind(this), 500);
+                    this.close(wrapper);
                 }
             }.bind(this), false);
+        },
+        close: function (el) {
+            var timer = null;
+
+            if (timer) {
+                clearTimeout(timer);
+            }
+
+            el.classList.add('mediabox-hide');
+
+            timer = setTimeout(function() {
+                this.root.removeChild(el);
+            }.bind(this), 500);
         }
     };
 
