@@ -1,4 +1,4 @@
-/*! mediabox v0.0.3 | (c) 2016 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
+/*! mediabox v1.0.0 | (c) 2016 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
 (function (root, factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
@@ -16,7 +16,11 @@
             return new MediaBox(element);
         }
 
-        this.selector = document.querySelectorAll(element);
+        if (!element) {
+            return false;
+        }
+
+        this.selector = element instanceof NodeList ? element : document.querySelectorAll(element);
         this.root     = document.querySelector('body');
         this.run();
     };
@@ -32,25 +36,6 @@
                     this.events();
                 }.bind(this), false);
             }.bind(this));
-        },
-        debounce: function(func, wait, immediate) {
-            var timeout;
-    return function() {
-        var context = this,
-            args = arguments;
-        var later = function() {
-            timeout = null;
-            if ( !immediate ) {
-                func.apply(context, args);
-            }
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait || 200);
-        if ( callNow ) {
-            func.apply(context, args);
-        }
-    };
         },
         template: function (s, d) {
             var p;

@@ -15,7 +15,11 @@
             return new MediaBox(element);
         }
 
-        this.selector = document.querySelectorAll(element);
+        if (!element) {
+            return false;
+        }
+
+        this.selector = element instanceof NodeList ? element : document.querySelectorAll(element);
         this.root     = document.querySelector('body');
         this.run();
     };
@@ -31,25 +35,6 @@
                     this.events();
                 }.bind(this), false);
             }.bind(this));
-        },
-        debounce: function(func, wait, immediate) {
-            var timeout;
-    return function() {
-        var context = this,
-            args = arguments;
-        var later = function() {
-            timeout = null;
-            if ( !immediate ) {
-                func.apply(context, args);
-            }
-        };
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait || 200);
-        if ( callNow ) {
-            func.apply(context, args);
-        }
-    };
         },
         template: function (s, d) {
             var p;
