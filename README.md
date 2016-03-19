@@ -13,7 +13,7 @@ With npm
 npm install mediabox --save
 ```
 
-Download
+## Download
 
 You can download the latest version or checkout all the releases [here](https://github.com/pinceladasdaweb/mediabox/releases).
 
