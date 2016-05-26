@@ -1,7 +1,7 @@
 {
     "name": "mediabox",
     "description": "Responsive Lightbox Plugin for Youtube and Vimeo with Vanilla JS",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": "Pedro Rogerio",
     "license": "MIT",
     "copyright": "2016",
@@ -22,8 +22,8 @@
         "gulp": "~3.9.1",
         "gulp-rename": "~1.2.2",
         "gulp-uglify": "~1.5.3",
-        "gulp-clean-css": "~2.0.3",
-        "gulp-header": "~1.7.1"
+        "gulp-clean-css": "~2.0.8",
+        "gulp-header": "~1.8.2"
     },
     "keywords": [
         "lightbox",
