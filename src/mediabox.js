@@ -35,6 +35,12 @@
                     this.events();
                 }.bind(this), false);
             }.bind(this));
+
+            this.root.addEventListener('keyup', function (e) {
+                if ((e.keyCode || e.which) === 27) {
+                    this.close(this.root.querySelector('.mediabox-wrap'));
+                }
+            }.bind(this), false);
         },
         template: function (s, d) {
             var p;
@@ -86,7 +92,7 @@
             var wrapper = document.querySelector('.mediabox-wrap');
 
             wrapper.addEventListener('click', function (e) {
-                if (e.target && e.target.nodeName === 'SPAN' && e.target.className === 'mediabox-close') {
+                if (e.target && e.target.nodeName === 'SPAN' && e.target.className === 'mediabox-close' || e.target.nodeName === 'DIV' && e.target.className === 'mediabox-wrap') {
                     this.close(wrapper);
                 }
             }.bind(this), false);
