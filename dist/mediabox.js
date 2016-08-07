@@ -99,6 +99,7 @@
             }.bind(this), false);
         },
         close: function (el) {
+            if (el === null) return true;
             var timer = null;
 
             if (timer) {
