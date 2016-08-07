@@ -98,6 +98,7 @@
             }.bind(this), false);
         },
         close: function (el) {
+            if (el === null) return true;
             var timer = null;
 
             if (timer) {
@@ -107,7 +108,10 @@
             el.classList.add('mediabox-hide');
 
             timer = setTimeout(function() {
-                this.root.removeChild(el);
+                var el = document.querySelector('.mediabox-wrap');
+                if (el !== null) {
+                    this.root.removeChild(el);
+                }
             }.bind(this), 500);
         }
     };
