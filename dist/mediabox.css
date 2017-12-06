@@ -1,4 +1,9 @@
-/*! mediabox v1.1.2 | (c) 2016 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
+/*! mediabox v1.1.2 | (c) 2017 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
+.stop-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
 .mediabox-wrap {
     position: fixed;
     width: 100%;
