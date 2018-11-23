@@ -1,4 +1,4 @@
-/*! mediabox v1.1.2 | (c) 2017 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
+/*! mediabox v1.1.2 | (c) 2018 Pedro Rogerio | https://github.com/pinceladasdaweb/mediabox */
 (function (root, factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
@@ -11,15 +11,19 @@
 }(this, function () {
     "use strict";
 
-    var MediaBox = function (element) {
+    var MediaBox = function (element, params) {
+        var default_params = { autoplay: '1' },
+            params = params || 0;
+
         if (!this || !(this instanceof MediaBox)) {
-            return new MediaBox(element);
+            return new MediaBox(element, params);
         }
 
         if (!element) {
             return false;
         }
 
+        this.params = Object.assign(default_params, params);
         this.selector = element instanceof NodeList ? element : document.querySelectorAll(element);
         this.root     = document.querySelector('body');
         this.run();
@@ -72,7 +76,8 @@
         },
         render: function (service) {
             var embedLink,
-                lightbox;
+                lightbox,
+                urlParams;
 
             if (service.provider === 'youtube') {
                 embedLink = 'https://www.youtube.com/embed/' + service.id;
@@ -82,9 +87,12 @@
                 throw new Error("Invalid video URL");
             }
 
+            urlParams = this.serialize(this.params);
+
             lightbox = this.template(
-                '<div class="mediabox-wrap" role="dialog" aria-hidden="false"><div class="mediabox-content" role="document" tabindex="0"><span id="mediabox-esc" class="mediabox-close" aria-label="close" tabindex="1"></span><iframe src="{embed}?autoplay=1" frameborder="0" allowfullscreen></iframe></div></div>', {
-                    embed: embedLink
+                '<div class="mediabox-wrap" role="dialog" aria-hidden="false"><div class="mediabox-content" role="document" tabindex="0"><span id="mediabox-esc" class="mediabox-close" aria-label="close" tabindex="1"></span><iframe src="{embed}{params}" frameborder="0" allowfullscreen></iframe></div></div>', {
+                    embed: embedLink,
+                    params: urlParams
                 });
 
             this.lastFocusElement = document.activeElement;
@@ -132,8 +140,45 @@
                     this.lastFocusElement.focus();
                 }
             }.bind(this), 500);
+        },
+        serialize: function (obj) {
+            return '?'+Object.keys(obj).reduce(function(a,k){a.push(k+'='+encodeURIComponent(obj[k]));return a},[]).join('&')
         }
     };
 
     return MediaBox;
 }));
+
+/**
+ * Object.assign polyfill for IE support
+ * Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#Polyfill
+ */
+if (typeof Object.assign != 'function') {
+    // Must be writable: true, enumerable: false, configurable: true
+    Object.defineProperty(Object, "assign", {
+      value: function assign(target, varArgs) { // .length of function is 2
+        'use strict';
+        if (target == null) { // TypeError if undefined or null
+          throw new TypeError('Cannot convert undefined or null to object');
+        }
+
+        var to = Object(target);
+
+        for (var index = 1; index < arguments.length; index++) {
+          var nextSource = arguments[index];
+
+          if (nextSource != null) { // Skip over if undefined or null
+            for (var nextKey in nextSource) {
+              // Avoid bugs when hasOwnProperty is shadowed
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey];
+              }
+            }
+          }
+        }
+        return to;
+      },
+      writable: true,
+      configurable: true
+    });
+  }
