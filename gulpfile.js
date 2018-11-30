@@ -40,4 +40,4 @@ gulp.task('watch', function () {
     gulp.watch('src/mediabox.css', ['compress:css']);
 });
 
-gulp.task('default', ['compress:js', 'compress:css']);
+gulp.task('default', gulp.parallel('compress:js', 'compress:css'));
