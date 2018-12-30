@@ -23,14 +23,26 @@
         }
 
         this.params = Object.assign(default_params, params);
-        this.selector = element instanceof NodeList ? element : document.querySelectorAll(element);
-        this.root     = document.querySelector('body');
+
+        if (typeof element === 'string') {
+            this.selector = document.querySelectorAll(element);
+        }
+
+        else {
+            this.selector = element;
+        }
+
+        this.root = document.querySelector('body');
         this.run();
     };
 
     MediaBox.prototype = {
         run: function () {
-            Array.prototype.forEach.call(this.selector, function (el) {
+            var selector = this.selector instanceof NodeList
+                ? this.selector
+                : [this.selector];
+
+            Array.prototype.forEach.call(selector, function (el) {
                 el.addEventListener('click', function (e) {
                     e.preventDefault();
 
