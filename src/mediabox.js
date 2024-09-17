@@ -63,14 +63,17 @@
             if (matches = url.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/)) {
                 service.provider = "youtube";
                 service.id       = matches[2];
-            } else if (matches = url.match(/https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/)) {
+            } else if (matches = url.match(/https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/([a-zA-Z0-9]+)?|\?)/)) {
                 service.provider = "vimeo";
                 service.id       = matches[3];
+                // The fourth match is the video hash, which Vimeo adds to private videos and needs to be added as a query parameter
+                if (matches[4]) {
+                    this.params['h'] = matches[4];
+                }
             } else {
                 service.provider = "Unknown";
                 service.id       = '';
             }
-
             return service;
         },
         render: function (service) {
@@ -156,26 +159,26 @@ if (typeof Object.assign != 'function') {
     // Must be writable: true, enumerable: false, configurable: true
     Object.defineProperty(Object, "assign", {
         value: function assign(target, varArgs) { // .length of function is 2
-        'use strict';
-        if (target == null) { // TypeError if undefined or null
-            throw new TypeError('Cannot convert undefined or null to object');
-        }
+            'use strict';
+            if (target == null) { // TypeError if undefined or null
+                throw new TypeError('Cannot convert undefined or null to object');
+            }
 
-        var to = Object(target);
+            var to = Object(target);
 
-        for (var index = 1; index < arguments.length; index++) {
-            var nextSource = arguments[index];
+            for (var index = 1; index < arguments.length; index++) {
+                var nextSource = arguments[index];
 
-            if (nextSource != null) { // Skip over if undefined or null
-            for (var nextKey in nextSource) {
-                // Avoid bugs when hasOwnProperty is shadowed
-                if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                to[nextKey] = nextSource[nextKey];
+                if (nextSource != null) { // Skip over if undefined or null
+                    for (var nextKey in nextSource) {
+                        // Avoid bugs when hasOwnProperty is shadowed
+                        if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                            to[nextKey] = nextSource[nextKey];
+                        }
+                    }
                 }
             }
-            }
-        }
-        return to;
+            return to;
         },
         writable: true,
         configurable: true
