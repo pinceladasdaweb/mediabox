@@ -66,6 +66,7 @@
             } else if (matches = url.match(/https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/([a-zA-Z0-9]+)?|\?)/)) {
                 service.provider = "vimeo";
                 service.id       = matches[3];
+                // The fourth match is the video hash, which Vimeo adds to private videos and needs to be added as a query parameter
                 if (matches[4]) {
                     this.params['h'] = matches[4];
                 }
