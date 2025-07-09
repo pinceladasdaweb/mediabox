@@ -25,6 +25,7 @@
         this.params = Object.assign(default_params, params);
         this.selector = element instanceof NodeList ? element : document.querySelectorAll(element);
         this.root     = document.querySelector('body');
+        this.isModalOpen = false;
         this.run();
     };
 
@@ -33,6 +34,11 @@
             Array.prototype.forEach.call(this.selector, function (el) {
                 el.addEventListener('click', function (e) {
                     e.preventDefault();
+
+                    if (this.isModalOpen) {
+                        return;
+                    }
+                    this.isModalOpen = true;
 
                     var link = this.parseUrl(el.getAttribute('href'));
                     this.render(link);
@@ -141,6 +147,7 @@
                     this.root.removeChild(el);
                     this.lastFocusElement.focus();
                 }
+                this.isModalOpen = false;
             }.bind(this), 500);
         },
         serialize: function (obj) {
